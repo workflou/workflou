@@ -1,0 +1,21 @@
+{{ define "body" }}
+<div>
+    {{ template "login_form" . }}
+</div>
+{{ end }}
+
+{{ define "login_form"}}
+<form>
+    <div>
+        <label for="email">E-mail</label>
+        <input type="text" id="email" name="email">
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+    </div>
+    <div>
+        <button type="submit">Login</button>
+    </div>
+</form>
+{{ end }}

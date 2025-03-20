@@ -11,7 +11,7 @@ func New() *http.ServeMux {
 	mux := http.NewServeMux()
 
 	ah := NewAuthHandler(us)
-	mux.HandleFunc("/login", ah.LoginPage)
+	mux.HandleFunc("/login", ah.LoginPage())
 
 	return mux
 }
