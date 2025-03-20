@@ -19,8 +19,9 @@ func New() *http.ServeMux {
 	mux := http.NewServeMux()
 	authMux := http.NewServeMux()
 
-	authHandler := NewAuthHandler(userStore)
+	authHandler := NewAuthHandler(userStore, sessionStore)
 	authMux.HandleFunc("GET /login", authHandler.LoginPage())
+	authMux.HandleFunc("POST /login", authHandler.LoginForm())
 
 	guestMux := http.NewServeMux()
 	guestMux.HandleFunc("GET /{$}", func(w http.ResponseWriter, r *http.Request) {

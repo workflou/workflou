@@ -6,9 +6,10 @@ import (
 )
 
 type User struct {
-	ID    string
-	Name  string
-	Email string
+	ID           string
+	Name         string
+	Email        string
+	PasswordHash string
 }
 
 type UserStore interface {
@@ -17,3 +18,4 @@ type UserStore interface {
 }
 
 var ErrUserNotFound = errors.New("user not found")
+var UserKey = "user"

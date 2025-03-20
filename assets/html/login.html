@@ -5,7 +5,7 @@
 {{ end }}
 
 {{ define "login_form"}}
-<form>
+<form method="post" action="/auth/login">
     <div>
         <label for="email">E-mail</label>
         <input type="text" id="email" name="email">

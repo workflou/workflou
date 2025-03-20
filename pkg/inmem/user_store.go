@@ -5,6 +5,7 @@ import (
 	"workflou/pkg/workflou"
 
 	"github.com/google/uuid"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type UserStore struct {
@@ -12,12 +13,15 @@ type UserStore struct {
 }
 
 func NewUserStore() *UserStore {
+	passwordHash, _ := bcrypt.GenerateFromPassword([]byte("password"), bcrypt.DefaultCost)
+
 	return &UserStore{
 		users: []*workflou.User{
 			{
-				ID:    "alice",
-				Name:  "Alice",
-				Email: "alice@example.com",
+				ID:           "test",
+				Name:         "Test",
+				Email:        "test@example.com",
+				PasswordHash: string(passwordHash),
 			},
 		},
 	}

@@ -18,3 +18,4 @@ type SessionStore interface {
 }
 
 var ErrSessionNotFound = errors.New("session not found")
+var SessionKey = "session"
