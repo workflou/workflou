@@ -1,6 +1,8 @@
 package middleware
 
-import "net/http"
+import (
+	"net/http"
+)
 
 func Recover() Middleware {
 	return func(next http.Handler) http.Handler {
