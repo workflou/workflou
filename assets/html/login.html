@@ -8,11 +8,17 @@
 <form method="post" action="/auth/login">
     <div>
         <label for="email">E-mail</label>
-        <input type="text" id="email" name="email">
+        <input type="text" id="email" name="email" value="{{ .Email }}">
+        {{ if .Errors.Email }}
+        <div>{{ .Errors.Email }}</div>
+        {{ end }}
     </div>
     <div>
         <label for="password">Password</label>
-        <input type="password" id="password" name="password">
+        <input type="password" id="password" name="password" value="{{ .Password }}">
+        {{ if .Errors.Password }}
+        <div>{{ .Errors.Password }}</div>
+        {{ end }}
     </div>
     <div>
         <button type="submit">Login</button>

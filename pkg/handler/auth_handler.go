@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"time"
 	"workflou/assets/html"
+	"workflou/pkg/form"
 	"workflou/pkg/workflou"
 
 	"golang.org/x/crypto/bcrypt"
@@ -24,24 +25,30 @@ func (h *AuthHandler) LoginPage() http.HandlerFunc {
 	t := template.Must(template.ParseFS(html.FS, "layout.html", "login.html"))
 
 	return func(w http.ResponseWriter, r *http.Request) {
-		t.Execute(w, nil)
+		t.Execute(w, form.NewLoginForm(r))
 	}
 }
 
 func (h *AuthHandler) LoginForm() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		r.ParseForm()
-		email := r.Form.Get("email")
-		password := r.Form.Get("password")
+	t := template.Must(template.ParseFS(html.FS, "layout.html", "login.html"))
 
-		u, err := h.Users.GetByEmail(r.Context(), email)
-		if err != nil {
-			http.Error(w, "invalid email or password", http.StatusUnauthorized)
+	return func(w http.ResponseWriter, r *http.Request) {
+		f := form.NewLoginForm(r)
+		if !f.Valid() {
+			t.Execute(w, f)
 			return
 		}
 
-		if bcrypt.CompareHashAndPassword([]byte(u.PasswordHash), []byte(password)) != nil {
-			http.Error(w, "invalid email or password", http.StatusUnauthorized)
+		u, err := h.Users.GetByEmail(r.Context(), f.Email)
+		if err != nil {
+			f.Errors["Email"] = "invalid email or password"
+			t.Execute(w, f)
+			return
+		}
+
+		if bcrypt.CompareHashAndPassword([]byte(u.PasswordHash), []byte(f.Password)) != nil {
+			f.Errors["Email"] = "invalid email or password"
+			t.Execute(w, f)
 			return
 		}
 
