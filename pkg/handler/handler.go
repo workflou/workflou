@@ -11,6 +11,7 @@ func New() *http.ServeMux {
 	sessionStore := inmem.NewSessionStore()
 
 	commonMiddleware := middleware.NewStack(
+		middleware.RequestID(),
 		middleware.LogRequest(),
 	)
 

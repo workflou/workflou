@@ -24,7 +24,7 @@ func LogRequest() Middleware {
 
 			next.ServeHTTP(rw, r)
 
-			log.Printf("%s %s %d %s", r.Method, r.URL.Path, rw.status, time.Since(start))
+			log.Printf("[%s] %s %s %d %s", r.Context().Value("requestID").(string), r.Method, r.URL.Path, rw.status, time.Since(start))
 		})
 	}
 }
