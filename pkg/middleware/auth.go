@@ -1,4 +1,4 @@
-package auth
+package middleware
 
 import (
 	"context"
@@ -6,8 +6,6 @@ import (
 	"net/http"
 	"workflou/pkg/workflou"
 )
-
-type Middleware func(http.Handler) http.Handler
 
 func AssignUserIdFromCookie(sessionStore workflou.SessionStore) Middleware {
 	return func(next http.Handler) http.Handler {

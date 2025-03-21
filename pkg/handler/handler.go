@@ -2,7 +2,6 @@ package handler
 
 import (
 	"net/http"
-	"workflou/pkg/auth"
 	"workflou/pkg/inmem"
 	"workflou/pkg/middleware"
 )
@@ -11,9 +10,18 @@ func New() *http.ServeMux {
 	userStore := inmem.NewUserStore()
 	sessionStore := inmem.NewSessionStore()
 
+	commonMiddleware := middleware.NewStack(
+		middleware.LogRequest(),
+	)
+
 	authMiddleware := middleware.NewStack(
-		middleware.Middleware(auth.AssignUserIdFromCookie(sessionStore)),
-		middleware.Middleware(auth.EnsureAuthenticated()),
+		commonMiddleware,
+		middleware.AssignUserIdFromCookie(sessionStore),
+		middleware.EnsureAuthenticated(),
+	)
+
+	guestMiddleware := middleware.NewStack(
+		commonMiddleware,
 	)
 
 	mux := http.NewServeMux()
@@ -29,7 +37,7 @@ func New() *http.ServeMux {
 	})
 
 	mux.Handle("/", authMiddleware(guestMux))
-	mux.Handle("/auth/", http.StripPrefix("/auth", authMux))
+	mux.Handle("/auth/", http.StripPrefix("/auth", guestMiddleware(authMux)))
 
 	return mux
 }

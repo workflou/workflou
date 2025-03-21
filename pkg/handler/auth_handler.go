@@ -35,6 +35,7 @@ func (h *AuthHandler) LoginForm() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		f := form.NewLoginForm(r)
 		if !f.Valid() {
+			w.WriteHeader(http.StatusBadRequest)
 			t.Execute(w, f)
 			return
 		}
@@ -42,12 +43,14 @@ func (h *AuthHandler) LoginForm() http.HandlerFunc {
 		u, err := h.Users.GetByEmail(r.Context(), f.Email)
 		if err != nil {
 			f.Errors["Email"] = "invalid email or password"
+			w.WriteHeader(http.StatusBadRequest)
 			t.Execute(w, f)
 			return
 		}
 
 		if bcrypt.CompareHashAndPassword([]byte(u.PasswordHash), []byte(f.Password)) != nil {
 			f.Errors["Email"] = "invalid email or password"
+			w.WriteHeader(http.StatusBadRequest)
 			t.Execute(w, f)
 			return
 		}
