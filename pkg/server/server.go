@@ -2,6 +2,8 @@ package server
 
 import (
 	"net/http"
+	"workflou/assets/css"
+	"workflou/assets/js"
 	"workflou/pkg/handler"
 	"workflou/pkg/inmem"
 	"workflou/pkg/middleware"
@@ -42,6 +44,9 @@ func New(addr string) *http.Server {
 	mux.HandleFunc("GET /panic", func(w http.ResponseWriter, r *http.Request) {
 		panic("oh no")
 	})
+
+	mux.Handle("/css/", http.StripPrefix("/css/", http.FileServerFS(css.FS)))
+	mux.Handle("/js/", http.StripPrefix("/js/", http.FileServerFS(js.FS)))
 
 	return &http.Server{
 		Addr:    addr,
