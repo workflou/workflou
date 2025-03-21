@@ -15,7 +15,7 @@
     </div>
     <div>
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" value="{{ .Password }}">
+        <input type="password" id="password" name="password">
         {{ if .Errors.Password }}
         <div>{{ .Errors.Password }}</div>
         {{ end }}
