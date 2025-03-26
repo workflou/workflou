@@ -1,0 +1,145 @@
+.app {
+    padding: var(--space-4);
+}
+
+.app__content {
+    margin-top: 1rem;
+}
+
+.app__breadcrumbs {
+    margin: 0 1rem;
+}
+
+.app__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app__logo-img {
+    height: 32px;
+    width: auto;
+}
+
+.app__user-dropdown {
+    padding: var(--space-1);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    user-select: none;
+}
+
+.app__user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.app__user-name {
+    padding: 0.25rem;
+}
+
+.app__user-avatar {
+    width: var(--icon-lg);
+    height: var(--icon-lg);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-hover);
+    padding: var(--space-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app__user-avatar svg {
+    width: var(--icon-md);
+    height: var(--icon-md);
+    stroke-width: 1.5;
+}
+
+.app__user-menu {
+    position: relative;
+    padding: 0.25rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    user-select: none;
+}
+
+.app__user-checkbox {
+    display: none;
+}
+
+.app__menu-list {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 200px;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    transform: translateY(-10px);
+    padding: 0.5rem 0.5rem;
+    visibility: hidden;
+    transition:
+        opacity 0.1s ease-in-out,
+        transform 0.1s ease-in-out,
+        visibility 0.1s ease-in-out;
+}
+
+.app__user-checkbox:checked~.app__menu-list {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.app__menu-item {
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+}
+
+.app__menu-item:hover,
+.app__menu-link:hover {
+    background-color: var(--color-hover);
+}
+
+.app__menu-link {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    margin: -0.5rem -1rem;
+    border-radius: 7px;
+}
+
+.app__menu-divider {
+    margin: 0.5rem 0;
+}
+
+.app__menu-divider {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 0.25rem 0;
+    padding: 0;
+    width: 100%;
+}
+
+.app__menu-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 0.5rem;
+    stroke-width: 1.5;
+    vertical-align: text-bottom;
+}

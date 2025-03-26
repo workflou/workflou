@@ -1,0 +1,46 @@
+package view
+
+import "workflou/pkg/viewmodel"
+
+
+templ LoginPage(f *viewmodel.LoginForm) {
+@Layout(LayoutProps{}) {
+<link rel="stylesheet" href="/css/login.css?v=1">
+<div class="login">
+    <div class="login__form">
+        <div class="login__blob-grid"></div>
+        <div class="login__blob-gradient"></div>
+        <div>
+            <img src="/img/logo.svg" alt="Logo" class="login__logo">
+        </div>
+        <div>
+            <h1 class="login__title">Sign in</h1>
+            <h2 class="login__subtitle">Please enter your credentials.</h2>
+        </div>
+        @LoginForm(f)
+    </div>
+</div>
+}
+}
+
+templ LoginForm(f *viewmodel.LoginForm) {
+<form method="post" action="/login" class="login__form-fields">
+    <div class="form__field">
+        <label for="email" class="form__label">E-mail</label>
+        <input type="text" id="email" name="email" value={f.Email} autofocus class="form__input">
+        if f.Errors["Email"] != "" {
+        <div class="form__error">{f.Errors["Email"]}</div>
+        }
+    </div>
+    <div class="form__field">
+        <label for="password" class="form__label">Password</label>
+        <input type="password" id="password" name="password" class="form__input">
+        if f.Errors["Password"] != "" {
+        <div class="form__error">{f.Errors["Password"]}</div>
+        }
+    </div>
+    <div>
+        <button type="submit" class="form__button">Login</button>
+    </div>
+</form>
+}
