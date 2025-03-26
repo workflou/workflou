@@ -1,15 +1,10 @@
 watch:
-	go tool air -build.cmd="make build" \
-		-build.bin="bin/workflou" \
-		-build.include_ext="go,js,css,html,templ" \
-		-build.exclude_regex="[*.min.js|*._test.go|*._templ.go]" \
-		-build.exclude_dir="" \
-		-tmp_dir="bin"
+	go tool air -c .air.toml
 
 dev:
 	go run ./cmd/workflou
 
-build: 
+build: templ
 	go build -o bin/workflou ./cmd/workflou
 
 .PHONY: test
