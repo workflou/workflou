@@ -31,10 +31,7 @@ func New(store store.Store) *chi.Mux {
 		r.Use(AssignUserFromCookie(store))
 		r.Use(EnsureAuthenticated())
 
-		r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-			w.Write([]byte("Hello, World!"))
-		})
-
+		handler.NewHomeHandler(store).Register(r)
 		handler.NewLogoutHandler(store).Register(r)
 	})
 
