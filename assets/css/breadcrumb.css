@@ -1,0 +1,5 @@
+.breadcrumb__wrapper {
+    display: flex;
+    gap: var(--space-8);
+    align-items: center;
+}

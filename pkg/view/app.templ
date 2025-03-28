@@ -8,9 +8,11 @@ User *workflou.User
 
 templ App(props AppProps) {
 {{ user, _ := ctx.Value(workflou.UserKey).(*workflou.User) }}
+{{ team, _ := ctx.Value(workflou.TeamKey).(*workflou.Team) }}
 @Layout(LayoutProps{}) {
 <div class="app">
     <link rel="stylesheet" href="/css/app.css?v=1">
+    <link rel="stylesheet" href="/css/breadcrumb.css?v=1">
     <nav class="app__nav">
         <a href="/">
             <div class="app__logo">
@@ -19,7 +21,9 @@ templ App(props AppProps) {
         </a>
 
         <div class="app__breadcrumbs">
-
+            @Breadcrumbs(BreadcrumbsProps{
+                Team: team,
+            })
         </div>
 
         <div class="app__user-menu" data-user-menu>
@@ -75,9 +79,19 @@ templ App(props AppProps) {
 }
 
 type BreadcrumbsProps struct {
-
+    Team *workflou.Team
 }
 
-func Breadcrumbs(props BreadcrumbsProps) {
+templ Breadcrumbs(props BreadcrumbsProps) {
+    <div class="breadcrumb__wrapper">
+        if props.Team != nil {
+            @TeamBreadcrumb(props.Team)
+        }
+    </div>
+}
 
+templ TeamBreadcrumb(team *workflou.Team) {
+    <div>
+    <div>{team.Name}</div>
+    </div>
 }

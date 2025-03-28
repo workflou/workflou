@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-    /* Colors */
     --color-text: #333;
     --color-text-light: #555;
     --color-error: #e50d0d;
@@ -10,12 +9,10 @@
     --color-white: #fff;
     --color-hover: #f4f4f4;
 
-    /* Border Radius */
     --radius-sm: 6px;
     --radius-md: 7px;
     --radius-lg: 8px;
 
-    /* Padding */
     --space-1: 0.25rem;
     --space-2: 0.5rem;
     --space-3: 0.75rem;
@@ -23,17 +20,14 @@
     --space-6: 1.5rem;
     --space-8: 2rem;
 
-    /* Font Sizes */
     --text-xs: 0.85rem;
     --text-sm: 0.9rem;
     --text-base: 1rem;
     --text-lg: 1.2rem;
 
-    /* Shadows */
     --shadow-sm: 0 2px 1px rgba(0, 0, 0, 0.05);
     --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.1);
 
-    /* Component Sizes */
     --icon-sm: 16px;
     --icon-md: 20px;
     --icon-lg: 32px;

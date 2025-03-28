@@ -8,12 +8,17 @@
 
 .app__breadcrumbs {
     margin: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
 }
 
 .app__nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: var(--space-8);
 }
 
 .app__logo-img {
