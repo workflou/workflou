@@ -106,6 +106,10 @@
 .app__user-name {
     padding: 0.25rem;
     padding-right: 0.5rem;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .app__user-avatar {
@@ -224,7 +228,7 @@
     opacity: 0.5;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 800px) {
     .app__search-wrapper {
         width: 40px;
         padding: 10px;

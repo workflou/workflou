@@ -16,6 +16,7 @@ templ App(props AppProps) {
 {{ teams, _ := ctx.Value(workflou.TeamsKey).([]*workflou.Team) }}
 @Layout(LayoutProps{}) {
 <div class="app">
+    <link rel="stylesheet" href="/css/variables.css?v=1">
     <link rel="stylesheet" href="/css/app.css?v=1">
     <link rel="stylesheet" href="/css/breadcrumb.css?v=1">
     <nav class="app__nav">

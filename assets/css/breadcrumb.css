@@ -35,6 +35,10 @@
     font-size: var(--text-sm);
     font-weight: 500;
     color: var(--color-gray-900);
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .breadcrumb__avatar {
@@ -61,7 +65,7 @@
     opacity: 0.5;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 800px) {
     .breadcrumb__text {
         display: none;
     }

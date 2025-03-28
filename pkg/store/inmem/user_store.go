@@ -22,7 +22,7 @@ func NewUserStore() *UserStore {
 		},
 		&workflou.Team{
 			ID:   "team-2",
-			Name: "Team #2",
+			Name: "This is a very long team name",
 		},
 		&workflou.Team{
 			ID:   "team-3",
@@ -34,7 +34,7 @@ func NewUserStore() *UserStore {
 		Users: []*workflou.User{
 			{
 				ID:           "test",
-				Name:         "Test",
+				Name:         "This is a very long user name",
 				Email:        "test@example.com",
 				PasswordHash: string(passwordHash),
 				Teams:        teams,

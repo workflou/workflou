@@ -54,7 +54,7 @@ func App(props AppProps) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"app\"><link rel=\"stylesheet\" href=\"/css/app.css?v=1\"><link rel=\"stylesheet\" href=\"/css/breadcrumb.css?v=1\"><nav class=\"app__nav\"><div class=\"app__nav-left\"><a href=\"/\"><div class=\"app__logo\"><img src=\"/img/logo.svg\" alt=\"Logo\" class=\"app__logo-img\"></div></a><div class=\"app__breadcrumbs\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"app\"><link rel=\"stylesheet\" href=\"/css/variables.css?v=1\"><link rel=\"stylesheet\" href=\"/css/app.css?v=1\"><link rel=\"stylesheet\" href=\"/css/breadcrumb.css?v=1\"><nav class=\"app__nav\"><div class=\"app__nav-left\"><a href=\"/\"><div class=\"app__logo\"><img src=\"/img/logo.svg\" alt=\"Logo\" class=\"app__logo-img\"></div></a><div class=\"app__breadcrumbs\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -80,7 +80,7 @@ func App(props AppProps) templ.Component {
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(user.Name)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `pkg/view/app.templ`, Line: 49, Col: 34}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `pkg/view/app.templ`, Line: 50, Col: 34}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
@@ -209,7 +209,7 @@ func TeamBreadcrumb(team *workflou.Team) templ.Component {
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues(fmt.Sprintf("--team-hue: %d", color.HueForInitial(team.Name)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `pkg/view/app.templ`, Line: 131, Col: 113}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `pkg/view/app.templ`, Line: 132, Col: 113}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
@@ -222,7 +222,7 @@ func TeamBreadcrumb(team *workflou.Team) templ.Component {
 		var templ_7745c5c3_Var8 string
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(string([]rune(team.Name)[0]))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `pkg/view/app.templ`, Line: 132, Col: 45}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `pkg/view/app.templ`, Line: 133, Col: 45}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {
@@ -235,7 +235,7 @@ func TeamBreadcrumb(team *workflou.Team) templ.Component {
 		var templ_7745c5c3_Var9 string
 		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(team.Name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `pkg/view/app.templ`, Line: 134, Col: 53}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `pkg/view/app.templ`, Line: 135, Col: 53}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
