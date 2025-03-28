@@ -37,25 +37,20 @@ func TestLogout_ByAuthenticatedUser(t *testing.T) {
 	defer tc.Close()
 
 	store := tc.Store.(inmem.Store)
+	team := &workflou.Team{
+		ID:   "team-1",
+		Name: "Team #1",
+	}
 	user := &workflou.User{
 		ID:           "1",
 		Email:        "test@example.com",
 		PasswordHash: "passwordHash",
+		Teams:        []*workflou.Team{team},
+		CurrentTeam:  team,
 	}
 	store.Users = append(store.Users, user)
-	session := &workflou.Session{
-		ID:        "sessionID",
-		User:      user,
-		CreatedAt: time.Now(),
-	}
+	session, cookie := testutil.CreateSessionAndCookieForUser(user)
 	store.Sessions = append(store.Sessions, session)
-
-	cookie := http.Cookie{
-		Name:     string(workflou.SessionKey),
-		Value:    session.ID,
-		Path:     "/",
-		HttpOnly: true,
-	}
 
 	req, _ := http.NewRequest("GET", tc.Server.URL+"/logout", nil)
 	req.AddCookie(&cookie)
@@ -92,15 +87,23 @@ func TestLogout_OtherSessionsAreNotAffected(t *testing.T) {
 
 	store := tc.Store.(inmem.Store)
 
+	team := &workflou.Team{
+		ID:   "team-1",
+		Name: "Team #1",
+	}
 	user1 := &workflou.User{
 		ID:           "1",
 		Email:        "test1@example.com",
 		PasswordHash: "passwordHash",
+		Teams:        []*workflou.Team{team},
+		CurrentTeam:  team,
 	}
 	user2 := &workflou.User{
 		ID:           "2",
 		Email:        "test2@example.com",
 		PasswordHash: "passwordHash",
+		Teams:        []*workflou.Team{team},
+		CurrentTeam:  team,
 	}
 	store.Users = append(store.Users, user1, user2)
 

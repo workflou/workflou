@@ -83,4 +83,11 @@ func App(props AppProps) templ.Component {
 	})
 }
 
+type BreadcrumbsProps struct {
+}
+
+func Breadcrumbs(props BreadcrumbsProps) {
+
+}
+
 var _ = templruntime.GeneratedTemplate

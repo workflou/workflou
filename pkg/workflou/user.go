@@ -5,4 +5,6 @@ type User struct {
 	Name         string
 	Email        string
 	PasswordHash string
+	CurrentTeam  *Team
+	Teams        []*Team
 }

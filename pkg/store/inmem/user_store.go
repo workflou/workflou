@@ -15,6 +15,20 @@ type UserStore struct {
 
 func NewUserStore() *UserStore {
 	passwordHash, _ := bcrypt.GenerateFromPassword([]byte("password"), bcrypt.DefaultCost)
+	teams := []*workflou.Team{
+		&workflou.Team{
+			ID:   "team-1",
+			Name: "Team #1",
+		},
+		&workflou.Team{
+			ID:   "team-2",
+			Name: "Team #2",
+		},
+		&workflou.Team{
+			ID:   "team-3",
+			Name: "Team #3",
+		},
+	}
 
 	return &UserStore{
 		Users: []*workflou.User{
@@ -23,6 +37,8 @@ func NewUserStore() *UserStore {
 				Name:         "Test",
 				Email:        "test@example.com",
 				PasswordHash: string(passwordHash),
+				Teams:        teams,
+				CurrentTeam:  teams[1],
 			},
 		},
 	}
