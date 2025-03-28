@@ -31,7 +31,7 @@ func AssignUserFromCookie(store store.Store) Middleware {
 	}
 }
 
-func AssignCurrentTeam(store store.Store) Middleware {
+func AssignTeams(store store.Store) Middleware {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			user, ok := r.Context().Value(workflou.UserKey).(*workflou.User)
@@ -53,6 +53,7 @@ func AssignCurrentTeam(store store.Store) Middleware {
 
 			user.CurrentTeam = user.Teams[0]
 			ctx := context.WithValue(r.Context(), workflou.TeamKey, user.CurrentTeam)
+			ctx = context.WithValue(ctx, workflou.TeamsKey, user.Teams)
 			next.ServeHTTP(w, r.WithContext(ctx))
 		})
 	}

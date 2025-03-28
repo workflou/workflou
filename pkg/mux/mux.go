@@ -30,7 +30,7 @@ func New(store store.Store) *chi.Mux {
 	r.Group(func(r chi.Router) {
 		r.Use(AssignUserFromCookie(store))
 		r.Use(EnsureAuthenticated())
-		r.Use(AssignCurrentTeam(store))
+		r.Use(AssignTeams(store))
 		r.Use(EnsureHasTeam())
 
 		handler.NewHomeHandler(store).Register(r)
