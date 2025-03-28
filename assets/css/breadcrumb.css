@@ -59,3 +59,17 @@
     height: 16px;
     opacity: 0.5;
 }
+
+@media (max-width: 640px) {
+    .breadcrumb__text {
+        display: none;
+    }
+
+    .breadcrumb__item--team {
+        padding: var(--space-2);
+    }
+
+    .breadcrumb__content {
+        gap: var(--space-1);
+    }
+}
