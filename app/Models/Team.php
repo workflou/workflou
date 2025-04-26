@@ -4,12 +4,13 @@ namespace App\Models;
 
 use App\TeamRole;
 use App\TeamType;
+use Filament\Models\Contracts\HasCurrentTenantLabel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Team extends Model
+class Team extends Model implements HasCurrentTenantLabel
 {
     /** @use HasFactory<\Database\Factories\TeamFactory> */
     use HasFactory;
@@ -34,5 +35,10 @@ class Team extends Model
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
+    }
+
+    public function getCurrentTenantLabel(): string
+    {
+        return $this->type->getLabel();
     }
 }
