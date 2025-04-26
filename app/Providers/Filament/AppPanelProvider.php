@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Models\Team;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -28,12 +29,14 @@ class AppPanelProvider extends PanelProvider
             ->default()
             ->id('app')
             ->path('')
+            ->tenant(Team::class, slugAttribute: 'slug')
             ->spa()
             ->topNavigation()
             ->brandLogo(fn() => view('filament.app.logo'))
             ->viteTheme('resources/css/filament/app/theme.css')
             ->maxContentWidth(Width::Full)
             ->login()
+            ->registration()
             ->colors([
                 'primary' => Color::Violet,
             ])
