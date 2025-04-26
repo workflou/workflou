@@ -10,6 +10,7 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\Width;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -29,6 +30,9 @@ class AppPanelProvider extends PanelProvider
             ->path('')
             ->spa()
             ->topNavigation()
+            ->brandLogo(fn() => view('filament.app.logo'))
+            ->viteTheme('resources/css/filament/app/theme.css')
+            ->maxContentWidth(Width::Full)
             ->login()
             ->colors([
                 'primary' => Color::Violet,
