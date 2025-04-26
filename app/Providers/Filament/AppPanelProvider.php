@@ -34,6 +34,7 @@ class AppPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/app/theme.css')
             ->maxContentWidth(Width::Full)
             ->login()
+            ->registration()
             ->colors([
                 'primary' => Color::Violet,
             ])
@@ -60,6 +61,7 @@ class AppPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+                'tenant',
+            ], isPersistent: true);
     }
 }
