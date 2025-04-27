@@ -1,3 +1,3 @@
-<div class="font-serif">
-    workflou<span class="text-violet-500">_</span>
+<div class="flex items-center">
+    <img src="{{ asset('img/logo.svg') }}" alt="Workflow" class="w-auto h-7">
 </div>
