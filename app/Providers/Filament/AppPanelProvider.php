@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Tenancy\RegisterTeam;
+use App\Http\Middleware\SwitchCurrentTeam;
 use App\Models\Team;
 use Filament\Actions\Action;
 use Filament\Auth\MultiFactor\EmailCode\EmailCodeAuthentication;
@@ -35,6 +36,9 @@ class AppPanelProvider extends PanelProvider
             ->path('')
             ->tenant(Team::class, slugAttribute: 'slug')
             ->tenantRoutePrefix('teams')
+            ->tenantMiddleware([
+                SwitchCurrentTeam::class,
+            ])
             ->spa()
             ->topNavigation()
             ->brandLogo(fn() => view('filament.app.logo'))

@@ -63,4 +63,17 @@ class TeamPolicy
     {
         return false;
     }
+
+    public function switch(User $user, Team $team): bool
+    {
+        if ($team->user_id === $user->id) {
+            return true;
+        }
+
+        if ($team->users()->where('user_id', $user->id)->exists()) {
+            return true;
+        }
+
+        return false;
+    }
 }
