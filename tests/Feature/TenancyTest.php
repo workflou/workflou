@@ -3,6 +3,7 @@
 use App\Filament\Pages\Tenancy\RegisterTeam;
 use App\Models\Team;
 use App\Models\User;
+use App\TeamType;
 use Filament\Auth\Pages\Register;
 use Livewire\Livewire;
 
@@ -19,7 +20,14 @@ test('new user has a default team', function () {
         ])
         ->call('register')
         ->assertHasNoErrors();
+
     expect(User::first()->currentTeam)->not->toBeNull();
+
+    assertDatabaseHas('teams', [
+        'name' => 'John Doe\'s Team',
+        'user_id' => User::first()->id,
+        'type' => TeamType::Personal,
+    ]);
 });
 
 test('user can create a new team', function () {
@@ -38,8 +46,8 @@ test('user can create a new team', function () {
     assertDatabaseHas('teams', [
         'name' => 'John Doe',
         'user_id' => $user->id,
+        'type' => TeamType::Company,
     ]);
-
 
     expect(Team::find(2)->users()->count())->toBe(1);
 });
