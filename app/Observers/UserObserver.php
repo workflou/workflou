@@ -12,9 +12,7 @@ class UserObserver
     {
         $team = $user->teams()->create([
             'name' => $user->name . '\'s Team',
-            'slug' => $slug = str(str($user->name)->slug() . '_' . Str::random(8))->lower(),
             'type' => TeamType::Personal,
-            'database' => $slug,
         ]);
 
         $user->switchTeam($team);

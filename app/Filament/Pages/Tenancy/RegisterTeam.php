@@ -53,8 +53,6 @@ class RegisterTeam extends RegisterTenant
 
             $team = $user->teams()->create([
                 'name' => $name = $data['name'],
-                'slug' => $slug = str(str($name)->slug() . '_' . Str::random(8))->lower(),
-                'database' => $slug,
                 'type' => TeamType::Company,
             ]);
 

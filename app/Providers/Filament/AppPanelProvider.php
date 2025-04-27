@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use App\Filament\Pages\Tenancy\RegisterTeam;
 use App\Models\Team;
 use Filament\Actions\Action;
+use Filament\Auth\MultiFactor\EmailCode\EmailCodeAuthentication;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -40,6 +41,11 @@ class AppPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/app/theme.css')
             ->maxContentWidth(Width::Full)
             ->login()
+            // ->emailVerification()
+            // ->requiresMultiFactorAuthentication()
+            // ->multiFactorAuthentication([
+            //     EmailCodeAuthentication::make(),
+            // ])
             ->registration()
             ->tenantRegistration(RegisterTeam::class)
             ->colors([
