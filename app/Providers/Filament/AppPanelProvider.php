@@ -2,11 +2,14 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Tenancy\RegisterTeam;
 use App\Models\Team;
+use Filament\Actions\Action;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -30,6 +33,7 @@ class AppPanelProvider extends PanelProvider
             ->id('app')
             ->path('')
             ->tenant(Team::class, slugAttribute: 'slug')
+            ->tenantRoutePrefix('teams')
             ->spa()
             ->topNavigation()
             ->brandLogo(fn() => view('filament.app.logo'))
@@ -37,6 +41,7 @@ class AppPanelProvider extends PanelProvider
             ->maxContentWidth(Width::Full)
             ->login()
             ->registration()
+            ->tenantRegistration(RegisterTeam::class)
             ->colors([
                 'primary' => Color::Violet,
             ])
