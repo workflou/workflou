@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class CrmAddress extends Model
+{
+    /** @use HasFactory<\Database\Factories\CrmAddressFactory> */
+    use HasFactory;
+
+    protected $fillable = [
+        'address',
+        'city',
+        'state',
+        'zip',
+        'country',
+    ];
+
+    public function clients(): BelongsToMany
+    {
+        return $this->belongsToMany(CrmClient::class);
+    }
+
+    public function leads(): BelongsToMany
+    {
+        return $this->belongsToMany(CrmLead::class);
+    }
+
+    public function proposals(): BelongsToMany
+    {
+        return $this->belongsToMany(CrmProposal::class);
+    }
+
+    public function team(): BelongsTo
+    {
+        return $this->belongsTo(Team::class);
+    }
+}
