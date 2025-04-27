@@ -31,9 +31,8 @@ test('new user has a default team', function () {
 });
 
 test('user can create a new team', function () {
-    actingAs($user = User::factory()->create());
-
-    Livewire::test(RegisterTeam::class)
+    Livewire::actingAs($user = User::factory()->create())
+        ->test(RegisterTeam::class)
         ->assertSuccessful()
         ->fillForm([
             'name' => 'John Doe',
