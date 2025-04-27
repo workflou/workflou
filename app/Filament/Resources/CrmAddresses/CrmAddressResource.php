@@ -12,10 +12,14 @@ use App\Filament\Resources\CrmAddresses\Schemas\CrmAddressInfolist;
 use App\Filament\Resources\CrmAddresses\Tables\CrmAddressesTable;
 use App\Models\CrmAddress;
 use BackedEnum;
+use Closure;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Model;
+use UnitEnum;
 
 class CrmAddressResource extends Resource
 {
@@ -23,13 +27,25 @@ class CrmAddressResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $cluster = CrmCluster::class;
-
     protected static ?string $label = 'Address';
 
     protected static ?string $pluralLabel = 'Addresses';
 
     protected static ?string $slug = 'addresses';
+
+    protected static string | UnitEnum | null $navigationGroup = 'CRM';
+
+    protected static bool $isGloballySearchable = true;
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['address', 'city', 'state', 'zip', 'country'];
+    }
+
+    public static function getGlobalSearchResultTitle(Model $record): string | Htmlable
+    {
+        return $record->address . ' ' . $record->city . ' ' . $record->state . ' ' . $record->zip . ' ' . $record->country;
+    }
 
     public static function form(Schema $schema): Schema
     {

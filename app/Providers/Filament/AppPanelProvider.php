@@ -40,7 +40,7 @@ class AppPanelProvider extends PanelProvider
                 SwitchCurrentTeam::class,
             ])
             ->spa()
-            ->topNavigation()
+            ->globalSearch()
             ->brandLogo(fn() => view('filament.app.logo'))
             ->viteTheme('resources/css/filament/app/theme.css')
             ->maxContentWidth(Width::Full)
