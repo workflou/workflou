@@ -13,7 +13,7 @@ class CrmClientPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class CrmClientPolicy
      */
     public function view(User $user, CrmClient $crmClient): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class CrmClientPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class CrmClientPolicy
      */
     public function update(User $user, CrmClient $crmClient): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class CrmClientPolicy
      */
     public function delete(User $user, CrmClient $crmClient): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class CrmClientPolicy
      */
     public function restore(User $user, CrmClient $crmClient): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class CrmClientPolicy
      */
     public function forceDelete(User $user, CrmClient $crmClient): bool
     {
-        return false;
+        return true;
     }
 }

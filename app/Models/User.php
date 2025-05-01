@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Observers\UserObserver;
-use Filament\Auth\MultiFactor\EmailCode\Contracts\HasEmailCodeAuthentication;
 use Filament\Models\Contracts\HasDefaultTenant;
 use Filament\Models\Contracts\HasTenants;
 use Filament\Panel;
@@ -21,7 +20,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 #[ObservedBy(UserObserver::class)]
-class User extends Authenticatable implements HasTenants, HasDefaultTenant, HasEmailCodeAuthentication
+class User extends Authenticatable implements HasTenants, HasDefaultTenant
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;

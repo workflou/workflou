@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('state')->nullable();
             $table->string('zip')->nullable();
             $table->string('country')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -31,6 +32,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -41,6 +43,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('status');
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -56,6 +59,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->bigInteger('amount')->nullable();
             $table->timestamp('due_date')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 
