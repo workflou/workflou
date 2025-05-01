@@ -14,6 +14,16 @@ return new class extends Migration
 {
     public function up(): void
     {
+        Schema::create('crm_clients', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Team::class)->constrained();
+            $table->string('name');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
         Schema::create('crm_addresses', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Team::class)->constrained();
@@ -23,16 +33,7 @@ return new class extends Migration
             $table->string('zip')->nullable();
             $table->string('country')->nullable();
             $table->softDeletes();
-            $table->timestamps();
-        });
-
-        Schema::create('crm_clients', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Team::class)->constrained();
-            $table->string('name');
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            $table->softDeletes();
+            $table->foreignIdFor(CrmClient::class)->nullable()->constrained();
             $table->timestamps();
         });
 
@@ -60,13 +61,6 @@ return new class extends Migration
             $table->bigInteger('amount')->nullable();
             $table->timestamp('due_date')->nullable();
             $table->softDeletes();
-            $table->timestamps();
-        });
-
-        Schema::create('crm_address_client', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(CrmAddress::class)->constrained();
-            $table->foreignIdFor(CrmClient::class)->constrained();
             $table->timestamps();
         });
 

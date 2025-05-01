@@ -22,9 +22,9 @@ class CrmAddress extends Model
         'country',
     ];
 
-    public function clients(): BelongsToMany
+    public function client(): BelongsTo
     {
-        return $this->belongsToMany(CrmClient::class);
+        return $this->belongsTo(CrmClient::class);
     }
 
     public function leads(): BelongsToMany

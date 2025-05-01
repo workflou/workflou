@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\CrmAddresses\Schemas;
+namespace App\Filament\Resources\CrmClients\Resources\CrmAddresses\Schemas;
 
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -12,6 +12,9 @@ class CrmAddressForm
     {
         return $schema
             ->components([
+                Select::make('team_id')
+                    ->relationship('team', 'name')
+                    ->required(),
                 TextInput::make('address'),
                 TextInput::make('city'),
                 TextInput::make('state'),

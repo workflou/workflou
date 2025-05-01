@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\CrmAddresses\Schemas;
+namespace App\Filament\Resources\CrmClients\Resources\CrmAddresses\Schemas;
 
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
@@ -18,6 +18,12 @@ class CrmAddressInfolist
                 TextEntry::make('state'),
                 TextEntry::make('zip'),
                 TextEntry::make('country'),
+                TextEntry::make('deleted_at')
+                    ->dateTime(),
+                TextEntry::make('created_at')
+                    ->dateTime(),
+                TextEntry::make('updated_at')
+                    ->dateTime(),
             ]);
     }
 }

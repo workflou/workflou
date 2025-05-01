@@ -35,7 +35,11 @@ class CrmClientsTable
                     ->toggleable(),
             ])
             ->filters([])
+            ->recordAction('view')
             ->actions([
+                ViewAction::make()
+                    ->modal()
+                    ->slideOver(),
                 EditAction::make()
                     ->modal()
                     ->slideOver(),

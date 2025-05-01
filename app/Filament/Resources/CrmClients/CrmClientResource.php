@@ -6,6 +6,7 @@ use App\Filament\Resources\CrmClients\Pages\CreateCrmClient;
 use App\Filament\Resources\CrmClients\Pages\EditCrmClient;
 use App\Filament\Resources\CrmClients\Pages\ListCrmClients;
 use App\Filament\Resources\CrmClients\Pages\ViewCrmClient;
+use App\Filament\Resources\CrmClients\RelationManagers\AddressesRelationManager;
 use App\Filament\Resources\CrmClients\Schemas\CrmClientForm;
 use App\Filament\Resources\CrmClients\Schemas\CrmClientInfolist;
 use App\Filament\Resources\CrmClients\Tables\CrmClientsTable;
@@ -74,7 +75,7 @@ class CrmClientResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AddressesRelationManager::class,
         ];
     }
 
@@ -83,6 +84,7 @@ class CrmClientResource extends Resource
         return [
             'index' => ListCrmClients::route('/'),
             'edit' => EditCrmClient::route('/{record}/edit'),
+            'view' => ViewCrmClient::route('/{record}'),
         ];
     }
 

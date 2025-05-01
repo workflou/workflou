@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\CrmAddresses\Pages;
+namespace App\Filament\Resources\CrmClients\Resources\CrmAddresses\Pages;
 
-use App\Filament\Resources\CrmAddresses\CrmAddressResource;
+use App\Filament\Resources\CrmClients\Resources\CrmAddresses\CrmAddressResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 

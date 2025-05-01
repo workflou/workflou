@@ -1,19 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\CrmAddresses\Tables;
+namespace App\Filament\Resources\CrmClients\Resources\CrmAddresses\Tables;
 
-use App\Filament\Exports\CrmAddressExporter;
-use App\Filament\Imports\CrmAddressImporter;
-use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ExportAction;
-use Filament\Actions\ExportBulkAction;
-use Filament\Actions\ImportAction;
+use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
 class CrmAddressesTable
@@ -22,6 +18,9 @@ class CrmAddressesTable
     {
         return $table
             ->columns([
+                TextColumn::make('team.name')
+                    ->numeric()
+                    ->sortable(),
                 TextColumn::make('address')
                     ->searchable(),
                 TextColumn::make('city')
@@ -32,22 +31,31 @@ class CrmAddressesTable
                     ->searchable(),
                 TextColumn::make('country')
                     ->searchable(),
+                TextColumn::make('deleted_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
-            ])
-            ->headerActions([
-                ImportAction::make()->importer(CrmAddressImporter::class),
-                ExportAction::make()->exporter(CrmAddressExporter::class),
+                TrashedFilter::make(),
             ])
             ->actions([
+                ViewAction::make(),
                 EditAction::make(),
-                DeleteAction::make(),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    ExportBulkAction::make()->exporter(CrmAddressExporter::class),
+                    ForceDeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
                 ]),
             ]);
     }

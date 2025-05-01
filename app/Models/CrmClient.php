@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CrmClient extends Model
@@ -30,9 +31,9 @@ class CrmClient extends Model
         return $this->belongsToMany(CrmProposal::class);
     }
 
-    public function addresses(): BelongsToMany
+    public function addresses(): HasMany
     {
-        return $this->belongsToMany(CrmAddress::class);
+        return $this->hasMany(CrmAddress::class);
     }
 
     public function users(): BelongsToMany
